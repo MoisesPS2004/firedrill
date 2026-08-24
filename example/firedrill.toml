@@ -1,0 +1,37 @@
+# The walkthrough drill. Run from this directory:  firedrill run
+#
+# Reading the table: RED means the harness noticed the sabotage.
+# green means it did NOT — and that green is the finding.
+
+[settings]
+timeout = 120
+
+[gates]
+tests = "python3 -m pytest -q project/tests"
+
+[[mutation]]
+name = "M1-inverted-comparison"
+file = "project/inventory.py"
+find = 'if i["count"] < threshold]'
+replace = 'if i["count"] > threshold]'
+note = "Sabotage the product logic the real test covers. The alarm must ring."
+[mutation.expect]
+tests = "RED"
+
+[[mutation]]
+name = "M2-negative-restock"
+file = "project/inventory.py"
+find = 'order[i["name"]] = batch - i["count"]'
+replace = 'order[i["name"]] = i["count"] - batch'
+note = "Restock quantities go NEGATIVE and the suite stays green: the vacuous test never sees an order. This declared green documents a known blind spot — fix the test and this cell must flip to RED in the same commit."
+[mutation.expect]
+tests = "green"
+
+[[mutation]]
+name = "M3-real-test-can-fail"
+file = "project/tests/test_inventory.py"
+find = '{"name": "soap", "count": 1}'
+replace = '{"name": "soap", "count": 5}'
+note = "Positive control OF the test itself: break its fixture and it must go RED. A test that cannot fail is scenery."
+[mutation.expect]
+tests = "RED"
