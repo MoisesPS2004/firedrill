@@ -104,7 +104,7 @@ firedrill is the generalized form of the "Paso 0" battery inside the
 verification harness of a production hostel-operations system built almost
 entirely by directing coding agents. When you didn't hand-write the code, you
 need instruments you can trust — and instruments you can trust are instruments
-you routinely try to fool. Nine mutations across five repositories run as a
+you routinely try to fool. Seven mutations across five repositories run as a
 merge precondition there; the expected color of each cell is derived from the
 project's risk register, so a risk cannot be marked "closed" without the
 corresponding cell flipping in the same commit.
