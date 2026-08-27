@@ -10,7 +10,7 @@ built by directing coding agents rather than typing the code myself. That last
 part matters: when you didn't hand-write the implementation, the test suite is
 not a convenience. It is the only pair of eyes you have.
 
-The suite was large (~1,300 tests) and green. The project also keeps an
+The suite was large — thousands of tests — and green. The project also keeps an
 explicit list of requirements — 23 statements of what the system must
 guarantee — and one afternoon I decided to audit the wiring: *for each
 requirement, which test would go red if the requirement broke?*
